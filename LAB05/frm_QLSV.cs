@@ -97,15 +97,18 @@ namespace LAB05
             if (txtAvarageScore.Text.Trim() == "")
             {
                 MessageBox.Show("Diem TB không được để trống ", "lỗi");
+                return;
             }
             float diemTB = 0;
             if (!float.TryParse(txtAvarageScore.Text,out diemTB))
             {
                 MessageBox.Show("Điểm TB không đúng định dạng", "lỗi");
+                return;
             }
             if (diemTB <0 || diemTB >10)
             {
                 MessageBox.Show("Điểm Trung bình phải trong khoảng 0-10", "lỗi");
+                return;
             }
             string filename = null;
             if (pictureBox1.Image != null)
@@ -146,7 +149,21 @@ namespace LAB05
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            
+            if (txtStudentID.Text.Trim() == "")
+            {
+                MessageBox.Show("Mã Sv không được để trống ", "lỗi");
+                return;
+            }
+            int ketqua = s_DAO.Delete(txtStudentID.Text);
+            if (ketqua == 0)
+            {
+                MessageBox.Show("Xóa Thành Công ", "kết quả");
+                Fill_dgv_QLSV();
+            }
+            else
+            {
+                MessageBox.Show("Xóa Thất Bại", "Lỗi");
+            }
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -198,7 +215,7 @@ namespace LAB05
                 {
                     majorName = m_DAO.GetMajor((int)s.FacultyID, (int)s.MajorID).Name;
                 }
-                    int index = dgv_QLSV.Rows.Add();
+                int index = dgv_QLSV.Rows.Add();
                 dgv_QLSV.Rows[index].Cells["MSSV"].Value = s.StudentId;
                 dgv_QLSV.Rows[index].Cells["HoTen"].Value = s.Fullname;
                 dgv_QLSV.Rows[index].Cells["Khoa"].Value = (facultyName == null) ? "" : facultyName;
@@ -229,20 +246,55 @@ namespace LAB05
             timer1.Enabled = false;
             if (txtName.Text.Trim() == "")
             {
-                pictureBox1.Image = null;
-            }
-            else
-            {
                 Student s = s_DAO.GetStudent(txtStudentID.Text);
-                if (s == null || s.Avatar == null)
+                if (s != null)
                 {
-                    pictureBox1.Image = null;
+                    txtName.Text = s.Fullname;
+                    txtAvarageScore.Text = s.AverageScore.ToString();
+                    cbo_khoa.SelectedValue = s.FacultyID;
+                    if(s.Avatar == null)
+                    {
+                        pictureBox1.Image = null;
+                    }
+                    else
+                    {
+                        fill_image(s.Avatar);
+                    }
                 }
-                else
-                {
-                    fill_image(s.Avatar);
-                }
+                
             }
+        }
+
+        private void uploadAva_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog f_Dialog = new OpenFileDialog();
+            f_Dialog.Filter = "All Files |*.*| JPEG Files|.jpg";
+            if (f_Dialog.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox1.Image = Image.FromFile(f_Dialog.FileName);
+            }
+        }
+
+        private void AddChuyenNganh_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frm_Dangki form2 = new frm_Dangki();
+            form2.ShowDialog();
+            this.Show();
+            this.Fill_dgv_QLSV();
+        }
+
+        private void cbo_khoa_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void thoátToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult h = MessageBox.Show
+                ("Bạn có chắc muốn thoát không?", "Error", MessageBoxButtons.OKCancel);
+            if (h == DialogResult.OK)
+                Application.Exit();
         }
     }
 }

@@ -55,6 +55,9 @@ namespace LAB05
             this.DTB = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.checkChuyenNganh = new System.Windows.Forms.CheckBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.uploadAva = new System.Windows.Forms.Button();
+            this.AddChuyenNganh = new System.Windows.Forms.ToolStripMenuItem();
+            this.thoátToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.grpTTSV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -75,7 +78,9 @@ namespace LAB05
             // chứcNăngToolStripMenuItem
             // 
             this.chứcNăngToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.UploadAvatar});
+            this.UploadAvatar,
+            this.AddChuyenNganh,
+            this.thoátToolStripMenuItem});
             this.chứcNăngToolStripMenuItem.Name = "chứcNăngToolStripMenuItem";
             this.chứcNăngToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
             this.chứcNăngToolStripMenuItem.Text = "Chức Năng";
@@ -100,6 +105,7 @@ namespace LAB05
             // 
             // grpTTSV
             // 
+            this.grpTTSV.Controls.Add(this.uploadAva);
             this.grpTTSV.Controls.Add(this.btnDelete);
             this.grpTTSV.Controls.Add(this.btnAdd);
             this.grpTTSV.Controls.Add(this.pictureBox1);
@@ -155,6 +161,7 @@ namespace LAB05
             this.cbo_khoa.Name = "cbo_khoa";
             this.cbo_khoa.Size = new System.Drawing.Size(146, 21);
             this.cbo_khoa.TabIndex = 12;
+            this.cbo_khoa.SelectedIndexChanged += new System.EventHandler(this.cbo_khoa_SelectedIndexChanged_1);
             // 
             // txtAvarageScore
             // 
@@ -282,6 +289,32 @@ namespace LAB05
             this.timer1.Interval = 2000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // uploadAva
+            // 
+            this.uploadAva.Location = new System.Drawing.Point(242, 223);
+            this.uploadAva.Name = "uploadAva";
+            this.uploadAva.Size = new System.Drawing.Size(26, 23);
+            this.uploadAva.TabIndex = 16;
+            this.uploadAva.Text = "...";
+            this.uploadAva.UseVisualStyleBackColor = true;
+            this.uploadAva.Click += new System.EventHandler(this.uploadAva_Click);
+            // 
+            // AddChuyenNganh
+            // 
+            this.AddChuyenNganh.Name = "AddChuyenNganh";
+            this.AddChuyenNganh.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.AddChuyenNganh.Size = new System.Drawing.Size(191, 22);
+            this.AddChuyenNganh.Text = "Đký Khoa";
+            this.AddChuyenNganh.Click += new System.EventHandler(this.AddChuyenNganh_Click);
+            // 
+            // thoátToolStripMenuItem
+            // 
+            this.thoátToolStripMenuItem.Name = "thoátToolStripMenuItem";
+            this.thoátToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.End)));
+            this.thoátToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.thoátToolStripMenuItem.Text = "Thoát";
+            this.thoátToolStripMenuItem.Click += new System.EventHandler(this.thoátToolStripMenuItem_Click);
+            // 
             // Frm_QLSV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -334,6 +367,9 @@ namespace LAB05
         private System.Windows.Forms.DataGridViewTextBoxColumn ChuyenNganh;
         private System.Windows.Forms.DataGridViewTextBoxColumn DTB;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button uploadAva;
+        private System.Windows.Forms.ToolStripMenuItem AddChuyenNganh;
+        private System.Windows.Forms.ToolStripMenuItem thoátToolStripMenuItem;
     }
 }
 

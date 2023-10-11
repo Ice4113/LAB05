@@ -53,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frm_Dangki.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Dangki.Designer.cs">
+      <DependentUpon>frm_Dangki.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_QLSV.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,6 +67,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frm_Dangki.resx">
+      <DependentUpon>frm_Dangki.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_QLSV.resx">
       <DependentUpon>frm_QLSV.cs</DependentUpon>
     </EmbeddedResource>
